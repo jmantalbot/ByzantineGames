@@ -1,4 +1,5 @@
-# Meeting 1 11/19/2025
+# Meeting 1 
+11/19/2025
 
 All members attended this meeting.
 
