@@ -1,5 +1,19 @@
 import random
 
+def setup_scenario(box_values, l, t):
+    """
+    Sets up the scenario with predefined boxes.
+    Parameters:
+        box_values (list): A list of integers representing the values in each box.
+        l (int): Number of boxes the agent will select.
+        t (int): Number of byzantine boxes the adversary can select.
+    Returns:
+        tuple: A tuple containing the n, l, t, and box_values.
+    """
+
+    # create a tuple representing the scenario
+    n = len(box_values)
+    return (n, l, t, box_values)
 
 def pick_randomly(boxes):
     return boxes[random.randint(0, len(boxes) - 1)]
@@ -10,7 +24,7 @@ def simulate(simulations, boxes):
     for box in boxes:
         max_utility += box
     max_utility *= simulations
-    # This is how many times the adversary successfully zeros out the value.
+    # This is how maso what ny times the adversary successfully zeros out the value.
     times_foiled = 0
     lost_utility = 0
     for i in range(simulations):
