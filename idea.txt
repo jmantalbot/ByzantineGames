@@ -1,0 +1,12 @@
+if __name__ == __main__:
+        scenarios = [scenario1, scenario2, scenario3]
+        agent = [deterministic, random, greedy, safe, water_fill]
+        adversary = [random, deterministic, expected_value]
+        output_res = []
+        for scenario in scenarios:
+                for ad in adversary:
+                        for ag in agent:
+                                results = simulate(scenario, ad, ag)
+                                output_res.append(results)
+        analyze_results()
+        output_results()
