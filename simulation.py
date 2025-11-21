@@ -123,10 +123,7 @@ if __name__ == "__main__":
                 agent_utility, adversary_utility = simulate(scenario, agent_strategy, adversary_strategy, simulations=100)
                 print(f"Scenario: {scenario}, Agent Strategy: {agent_strategy.__name__}, Adversary Strategy: {adversary_strategy.__name__}")
                 print(f"Average Agent Utility: {agent_utility}, Average Adversary Utility: {adversary_utility}\n")
-
-    # TODO: Run the simulation 100x for every combination of scenario, agent strategy, and adversary strategy (will return the average utility for both agent and adversary). The results should be saved so we can determine the best strategy for each scenario.
+                # TODO: The results should be saved so we can determine the best strategy for each scenario.
 
     # TODO: Print the results in a nice table format. (Determine which strategy was the best for each scenario)
-
-
 
