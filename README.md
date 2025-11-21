@@ -25,18 +25,18 @@ Nathan can get a framework up by tonight for everyone to look at.
 
 # Meeting 2
 
-Simulation function
-tuple for different scenarios (n, t, l)
-different functions for strategies (both agent and adversary) give n, t, l
-  return boxes
-function to apply the strategy 
-  return values of boxes
+Simulation function__
+tuple for different scenarios (n, t, l)__
+different functions for strategies (both agent and adversary) give n, t, l__
+  return boxes__
+function to apply the strategy __
+  return values of boxes__
 
-Compare agent's choices to updated box list
-Display utility for Agent and utility lost from Adversary
-Learning algorithm (Look at last five outcomes, choose strategy differently).
+Compare agent's choices to updated box list__
+Display utility for Agent and utility lost from Adversary__
+Learning algorithm (Look at last five outcomes, choose strategy differently).__
 
 
 ### Extensions:
-We are proving the math of this mixed strategy, 
+We are proving the math of this mixed strategy, __
 proof of concept that the agent and adversary could learn to apply different strategies based on past experiences. Adversary never zeros out top values, so picking top values is actually better than water fill.
