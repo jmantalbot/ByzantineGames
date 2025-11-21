@@ -38,9 +38,26 @@ def simulate(simulations, boxes):
     print(f"The agent had a total of {total_utility} utility out of a maximum of {max_utility}")
     print(f"The adversary foiled the agent {times_foiled} times resulting in a loss of {lost_utility}.")
 
-simulations = 100
-boxes = [4, 5, 7, 8]
-simulate(simulations, boxes)
+
+if __name__ == "__main__":
+
+    # Scenario 1 (4 boxes, agent picks 1, adversary picks 1)
+    scenario1 = setup_scenario([4, 5, 7, 8], l=1, t=1)
+
+    # Scenario 2 (10 boces, agent picks 3, adversary picks 3)
+    scenario2 = setup_scenario([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], l=3, t=3) # values of the boxes can be determined later I just did 1-10 for simplicity
+
+    # Scenario 3 (10 boxes, agent picks 5, adversary picks 2)
+    scenario3 = setup_scenario([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], l=5, t=2) # values of the boxes can be determined later I just did 1-10 for simplicity
+
+    # TODO: Run the simulation 100x for every combination of scenario, agent strategy, and adversary strategy. Find the average of both utilities for each combination.
+
+    # TODO: Print the results in a nice table format. (Determine which strategy was the best for each scenario)
+
+    # This code is used for the current simulate implementation (bare bones)
+    simulations = 100
+    boxes = [4, 5, 7, 8]
+    simulate(simulations, boxes)
 
 
 
