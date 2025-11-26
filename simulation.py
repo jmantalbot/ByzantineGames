@@ -45,16 +45,16 @@ def simulate(scenario, agent_strategy, adversary_strategy, simulations):
         adversary_chosen = adversary_strategy(n, l, t, boxes)
 
         # Calculate utilities for every box
-        for i in range(agent_chosen.__len__()):
+        for j in range(len(agent_chosen)):
             # if the agent chose that box
-            if agent_chosen[i][1] == 1:
+            if agent_chosen[j][1] == 1:
                 # check if the adversary also chose that box
-                if adversary_chosen[i][1] == 1:
+                if adversary_chosen[j][1] == 1:
                     # adversary foiled the agent
-                    total_adversary_utility += agent_chosen[i][0]
+                    total_adversary_utility += agent_chosen[j][0]
                 else:
                     # agent gets the box value as utility because he was not foiled
-                    total_agent_utility += agent_chosen[i][0]
+                    total_agent_utility += agent_chosen[j][0]
 
     # Compute average utilities
     total_agent_utility /= simulations
