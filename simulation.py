@@ -240,7 +240,7 @@ if __name__ == "__main__":
 
                 print(f"Scenario: {scenario}, Agent Strategy: {agent_strategy.__name__}, Adversary Strategy: {adversary_strategy.__name__}")
                 print(f"Average Agent Utility: {agent_utility}, Average Adversary Utility: {adversary_utility}\n")
-                # TODO: The results should be saved so we can determine the best strategy for each scenario.
+                # TODO: The results should be saved so we can determine the best strategy for each scenario. In our proposal we mentioned using a maximin analyasis.
 
-    # TODO: Print the results in a nice table format. (Determine which strategy was the best for each scenario)
+    # TODO: Print the results in a nice table format. (Determine which strategy was the best for each scenario or something)
 
