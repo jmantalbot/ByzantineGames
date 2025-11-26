@@ -181,7 +181,7 @@ if __name__ == "__main__":
 
                 # temprary counter logic (helps us see how many total combinations have been run)
                 num += 1
-                print(num + ". ")
+                print(str(num) + ". ")
 
                 print(f"Scenario: {scenario}, Agent Strategy: {agent_strategy.__name__}, Adversary Strategy: {adversary_strategy.__name__}")
                 print(f"Average Agent Utility: {agent_utility}, Average Adversary Utility: {adversary_utility}\n")
