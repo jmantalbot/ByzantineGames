@@ -79,6 +79,24 @@ def pick_randomly_agent(n, l, t, boxes):
     chosen_boxes = random.sample(range(n), l)
     return [(boxes[i], 1 if i in chosen_boxes else 0) for i in range(n)]
 
+def deterministic_agent(n, l, t, boxes):
+    """
+    Agent strategy: Picks the top l boxes with the highest values.
+    Parameters:
+        n (int): Total number of boxes.
+        l (int): Number of boxes the agent will select.
+        t (int): Number of byzantine boxes the adversary can select.
+        boxes (list): List of box values.
+    Returns:
+        list: A list of tuples where each tuple contains (box value, if chosen).
+    """
+
+    # Get the indexes of the top l boxes out of n total boxes
+    top_indexes = sorted(range(n), key=lambda i: boxes[i], reverse=True)[:l]
+
+    # Return the boxes with a flag (0 for no, 1 for yes) indicating if they were chosen
+    return [(boxes[i], 1 if i in top_indexes else 0) for i in range(n)]
+
 
 # =================== Adversary Strategies ===================
 def pick_randomly_adversary(n, l, t, boxes):
@@ -96,6 +114,24 @@ def pick_randomly_adversary(n, l, t, boxes):
     chosen_boxes = random.sample(range(n), t)
     return [(boxes[i], 1 if i in chosen_boxes else 0) for i in range(n)]
 
+def deterministic_adversary(n, l, t, boxes):
+    """
+    Adversary strategy: Picks the top t boxes with the highest values.
+    Parameters:
+        n (int): Total number of boxes.
+        l (int): Number of boxes the agent will select.
+        t (int): Number of byzantine boxes the adversary can select.
+        boxes (list): List of box values.
+    Returns:
+        list: A list of tuples where each tuple contains (box value, if chosen).
+    """
+
+    # Get the indexes of the top t boxes out of n total boxes
+    top_indexes = sorted(range(n), key=lambda i: boxes[i], reverse=True)[:t]
+
+    # Return the boxes with a flag (0 for no, 1 for yes) indicating if they were chosen
+    return [(boxes[i], 1 if i in top_indexes else 0) for i in range(n)]
+
 
 if __name__ == "__main__":
 
@@ -112,10 +148,10 @@ if __name__ == "__main__":
     scenarios = [scenario1, scenario2, scenario3]
 
     # Stores all agent strategies
-    agent_strategies = [pick_randomly_agent]  # TODO: Add more agent strategies here
+    agent_strategies = [pick_randomly_agent, deterministic_agent]  # TODO: Add more agent strategies here
 
     # Stores all adversary strategies
-    adversary_strategies = [pick_randomly_adversary]  # TODO: Add more adversary strategies here
+    adversary_strategies = [pick_randomly_adversary, deterministic_adversary]  # TODO: Add more adversary strategies here
 
     for scenario in scenarios:
         for agent_strategy in agent_strategies:
