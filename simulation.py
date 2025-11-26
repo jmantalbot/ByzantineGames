@@ -1,32 +1,129 @@
 import random
 
+def setup_scenario(box_values, l, t):
+    """
+    Sets up the scenario with predefined boxes.
+    Parameters:
+        box_values (list): A list of integers representing the values in each box.
+        l (int): Number of boxes the agent will select.
+        t (int): Number of byzantine boxes the adversary can select.
+    Returns:
+        tuple: A tuple containing the n, l, t, and box_values.
+    """
 
-def pick_randomly(boxes):
-    return boxes[random.randint(0, len(boxes) - 1)]
+    # create a tuple representing the scenario
+    n = len(box_values)
+    return (n, l, t, box_values)
 
-def simulate(simulations, boxes):
-    max_utility = 0
-    total_utility = 0
-    for box in boxes:
-        max_utility += box
-    max_utility *= simulations
-    # This is how many times the adversary successfully zeros out the value.
-    times_foiled = 0
-    lost_utility = 0
+
+def simulate(scenario, agent_strategy, adversary_strategy, simulations):
+    """
+    Simulates the agent and adversary picking boxes from the given scenario.
+    Parameters:
+        scenario (tuple): A tuple containing the n, l, t, and box_values.
+        agent_strategy (function): Function defining the agent's strategy.
+        adversary_strategy (function): Function defining the adversary's strategy.
+        simulations (int): Number of simulations to run.
+    Returns:
+        total_agent_utility (int): Total utility gained by the agent.
+        total_adversary_utility (int): Total utility gained by the adversary (lost by the agent).
+    """
+
+    # Total agent utility (agent gets the box value as the utility if not foiled by adversary)
+    total_agent_utility = 0
+    # Total adversary utility (adversary gets the box value as the utility if it foils the agent)
+    total_adversary_utility = 0
+
+    # Unpack the scenario
+    n, l, t, boxes = scenario
+
+    # Run each simulation
     for i in range(simulations):
-        agent_strategy = pick_randomly(boxes)
-        adversary_strategy = pick_randomly(boxes)
-        if agent_strategy == adversary_strategy:
-            times_foiled += 1
-            lost_utility += agent_strategy
-        else:
-            total_utility += agent_strategy
-    print(f"The agent had a total of {total_utility} utility out of a maximum of {max_utility}")
-    print(f"The adversary foiled the agent {times_foiled} times resulting in a loss of {lost_utility}.")
+        # Agent picks boxes based on its strategy
+        agent_chosen = agent_strategy(n, l, t, boxes)
+        # Adversary picks boxes based on its strategy
+        adversary_chosen = adversary_strategy(n, l, t, boxes)
 
-simulations = 100
-boxes = [4, 5, 7, 8]
-simulate(simulations, boxes)
+        # Calculate utilities for every box
+        for i in range(agent_chosen.__len__()):
+            # if the agent chose that box
+            if agent_chosen[i][1] == 1:
+                # check if the adversary also chose that box
+                if adversary_chosen[i][1] == 1:
+                    # adversary foiled the agent
+                    total_adversary_utility += agent_chosen[i][0]
+                else:
+                    # agent gets the box value as utility because he was not foiled
+                    total_agent_utility += agent_chosen[i][0]
+
+    # Compute average utilities
+    total_agent_utility /= simulations
+    total_adversary_utility /= simulations
+
+    return total_agent_utility, total_adversary_utility
+
+# =================== Agent Strategies ===================
+
+def pick_randomly_agent(n, l, t, boxes):
+    """
+    Agent strategy: Picks boxes randomly.
+    Parameters:
+        n (int): Total number of boxes.
+        l (int): Number of boxes the agent will select.
+        t (int): Number of byzantine boxes the adversary can select.
+        boxes (list): List of box values.
+    Returns:
+        list: A list of tuples where each tuple contains (box value, if chosen).
+    """
+
+    chosen_boxes = random.sample(range(n), l)
+    return [(boxes[i], 1 if i in chosen_boxes else 0) for i in range(n)]
 
 
+# =================== Adversary Strategies ===================
+def pick_randomly_adversary(n, l, t, boxes):
+    """
+    Adversary strategy: Picks boxes randomly.
+    Parameters:
+        n (int): Total number of boxes.
+        l (int): Number of boxes the agent will select.
+        t (int): Number of byzantine boxes the adversary can select.
+        boxes (list): List of box values.
+    Returns:
+        list: A list of tuples where each tuple contains (box value, if chosen).
+    """
+
+    chosen_boxes = random.sample(range(n), t)
+    return [(boxes[i], 1 if i in chosen_boxes else 0) for i in range(n)]
+
+
+if __name__ == "__main__":
+
+    # Scenario 1 (4 boxes, agent picks 1, adversary picks 1)
+    scenario1 = setup_scenario([4, 5, 7, 8], l=1, t=1)
+
+    # Scenario 2 (10 boxes, agent picks 3, adversary picks 3)
+    scenario2 = setup_scenario([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], l=3, t=3) # values of the boxes can be determined later I just did 1-10 for simplicity
+
+    # Scenario 3 (10 boxes, agent picks 5, adversary picks 2)
+    scenario3 = setup_scenario([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], l=5, t=2) # values of the boxes can be determined later I just did 1-10 for simplicity
+
+    # Stores all scenarios
+    scenarios = [scenario1, scenario2, scenario3]
+
+    # Stores all agent strategies
+    agent_strategies = [pick_randomly_agent]  # TODO: Add more agent strategies here
+
+    # Stores all adversary strategies
+    adversary_strategies = [pick_randomly_adversary]  # TODO: Add more adversary strategies here
+
+    for scenario in scenarios:
+        for agent_strategy in agent_strategies:
+            for adversary_strategy in adversary_strategies:
+                agent_utility, adversary_utility = simulate(scenario, agent_strategy, adversary_strategy, simulations=100)
+                print(f"Scenario: {scenario}, Agent Strategy: {agent_strategy.__name__}, Adversary Strategy: {adversary_strategy.__name__}")
+                print(f"Average Agent Utility: {agent_utility}, Average Adversary Utility: {adversary_utility}\n")
+                # TODO: The results should be saved so we can determine the best strategy for each scenario.
+
+    # TODO: Print the results in a nice table format. (Determine which strategy was the best for each scenario)
 
