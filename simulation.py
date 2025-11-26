@@ -1,5 +1,7 @@
 import random
 
+import numpy as np
+
 def setup_scenario(box_values, l, t):
     """
     Sets up the scenario with predefined boxes.
@@ -171,6 +173,39 @@ def deterministic_adversary(n, l, t, boxes):
     # Return the boxes with a flag (0 for no, 1 for yes) indicating if they were chosen
     return [(boxes[i], 1 if i in top_indexes else 0) for i in range(n)]
 
+def expected_value_adversary(n, l, t, boxes):
+    """
+    Adversary strategy: Picks boxes based on expected value calculations.
+
+    Probabilistically picks boxes that maximize expected damage to the agent. 
+    Each box is chosen with probability proportional to the expected utility it provides to the agent.
+    Takes into account the agent's likely selections.
+
+    Parameters:
+        n (int): Total number of boxes.
+        l (int): Number of boxes the agent will select.
+        t (int): Number of byzantine boxes the adversary can select.
+        boxes (list): List of box values.
+    Returns:
+        list: A list of tuples where each tuple contains (box value, if chosen).
+    """
+
+    # Convert to a numpy array to allow for no repeated selections
+    np_boxes = np.array(boxes, dtype=float)
+
+    # Determine the probability that the agent will pick each box (based on article and the fact that the agent wants a high utility)
+    if np.sum(np_boxes) == 0:
+        probabilities = np.ones(n) / n  # Avoid division by zero; uniform probabilities
+    else:
+        # Calculate probabilities proportional to box values
+        probabilities = np_boxes / np.sum(np_boxes)
+
+    # Select t boxes based on calculated probabilities, without replacement
+    chosen_boxes = np.random.choice(n, size=t, replace=False, p=probabilities)
+
+    # Return the boxes with a flag (0 for no, 1 for yes) indicating if they were chosen
+    return [(boxes[i], 1 if i in chosen_boxes else 0) for i in range(n)]
+
 
 if __name__ == "__main__":
 
@@ -190,7 +225,7 @@ if __name__ == "__main__":
     agent_strategies = [pick_randomly_agent, deterministic_agent, greedy_agent, safe_agent]  # TODO: Add more agent strategies here
 
     # Stores all adversary strategies
-    adversary_strategies = [pick_randomly_adversary, deterministic_adversary]  # TODO: Add more adversary strategies here
+    adversary_strategies = [pick_randomly_adversary, deterministic_adversary, expected_value_adversary]  # TODO: Add more adversary strategies here
 
     num = 0 # for temporary counting of simulations
 
