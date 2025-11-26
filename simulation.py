@@ -97,6 +97,25 @@ def deterministic_agent(n, l, t, boxes):
     # Return the boxes with a flag (0 for no, 1 for yes) indicating if they were chosen
     return [(boxes[i], 1 if i in top_indexes else 0) for i in range(n)]
 
+def greedy_agent(n, l, t, boxes):
+    """
+    Agent strategy: Picks random boxes from the top t + l boxes.
+    Parameters:
+        n (int): Total number of boxes.
+        l (int): Number of boxes the agent will select.
+        t (int): Number of byzantine boxes the adversary can select.
+        boxes (list): List of box values.
+    Returns:
+        list: A list of tuples where each tuple contains (box value, if chosen).
+    """
+
+    # Get the indexes of the top t + l boxes out of n total boxes
+    top_indexes = sorted(range(n), key=lambda i: boxes[i], reverse=True)[:(t + l)]
+    chosen_boxes = random.sample(top_indexes, l)
+
+    # Return the boxes with a flag (0 for no, 1 for yes) indicating if they were chosen
+    return [(boxes[i], 1 if i in chosen_boxes else 0) for i in range(n)]
+
 
 # =================== Adversary Strategies ===================
 def pick_randomly_adversary(n, l, t, boxes):
@@ -148,15 +167,22 @@ if __name__ == "__main__":
     scenarios = [scenario1, scenario2, scenario3]
 
     # Stores all agent strategies
-    agent_strategies = [pick_randomly_agent, deterministic_agent]  # TODO: Add more agent strategies here
+    agent_strategies = [pick_randomly_agent, deterministic_agent, greedy_agent]  # TODO: Add more agent strategies here
 
     # Stores all adversary strategies
     adversary_strategies = [pick_randomly_adversary, deterministic_adversary]  # TODO: Add more adversary strategies here
+
+    num = 0 # for temporary counting of simulations
 
     for scenario in scenarios:
         for agent_strategy in agent_strategies:
             for adversary_strategy in adversary_strategies:
                 agent_utility, adversary_utility = simulate(scenario, agent_strategy, adversary_strategy, simulations=100)
+
+                # temprary counter logic (helps us see how many total combinations have been run)
+                num += 1
+                print(num + ". ")
+
                 print(f"Scenario: {scenario}, Agent Strategy: {agent_strategy.__name__}, Adversary Strategy: {adversary_strategy.__name__}")
                 print(f"Average Agent Utility: {agent_utility}, Average Adversary Utility: {adversary_utility}\n")
                 # TODO: The results should be saved so we can determine the best strategy for each scenario.
