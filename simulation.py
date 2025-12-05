@@ -1,6 +1,7 @@
 import random
-
 import numpy as np
+from water_fill import water_fill
+from middle import optimal_randomized_agent
 
 def setup_scenario(box_values, l, t):
     """
