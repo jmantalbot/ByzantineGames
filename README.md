@@ -42,7 +42,7 @@ We are proving the math of this mixed strategy,
 proof of concept that the agent and adversary could learn to apply different strategies based on past experiences. Adversary never zeros out top values, so picking top values is actually better than water fill.
 
 # Discord Checkpoint 1 11/21
-Natalia modified the main function, created the setup scenario function. modified the simulate function, and modified the pick randomly function.
+Natalia created the main function to set up and track the results of all combinations of scenarios and strategies, created the setup scenario function, modified the simulate function, modified the pick randomly function, created the expected value strategy, created both deterministic strategies, created both safe strategies, and created both greedy strategies.
 
 # Discord Checkpoint 2 11/25
 Natalia posted a list of what needs to be done and what has been done. Josh agreed to figure out the water fill strategy, and Nathan agreed on the research component. 
