@@ -1,143 +1,239 @@
 1.
 Scenario: (4, 1, 1, [4, 5, 7, 8]), Agent Strategy: pick_randomly_agent, Adversary Strategy: pick_randomly_adversary
-Average Agent Utility: 4.58, Average Adversary Utility: 1.63
+Average Agent Utility: 4.69, Average Adversary Utility: 1.65
 
 2.
 Scenario: (4, 1, 1, [4, 5, 7, 8]), Agent Strategy: pick_randomly_agent, Adversary Strategy: deterministic_adversary
-Average Agent Utility: 4.31, Average Adversary Utility: 1.68
+Average Agent Utility: 4.19, Average Adversary Utility: 1.76
 
 3.
 Scenario: (4, 1, 1, [4, 5, 7, 8]), Agent Strategy: pick_randomly_agent, Adversary Strategy: expected_value_adversary
-Average Agent Utility: 3.8, Average Adversary Utility: 1.91
+Average Agent Utility: 4.56, Average Adversary Utility: 1.61
 
 4.
-Scenario: (4, 1, 1, [4, 5, 7, 8]), Agent Strategy: deterministic_agent, Adversary Strategy: pick_randomly_adversary
-Average Agent Utility: 5.84, Average Adversary Utility: 2.16
+Scenario: (4, 1, 1, [4, 5, 7, 8]), Agent Strategy: pick_randomly_agent, Adversary Strategy: optimal_byzantine_adversary
+Average Agent Utility: 4.48, Average Adversary Utility: 1.59
 
 5.
+Scenario: (4, 1, 1, [4, 5, 7, 8]), Agent Strategy: deterministic_agent, Adversary Strategy: pick_randomly_adversary
+Average Agent Utility: 6.0, Average Adversary Utility: 2.0
+
+6.
 Scenario: (4, 1, 1, [4, 5, 7, 8]), Agent Strategy: deterministic_agent, Adversary Strategy: deterministic_adversary
 Average Agent Utility: 0.0, Average Adversary Utility: 8.0
 
-6.
-Scenario: (4, 1, 1, [4, 5, 7, 8]), Agent Strategy: deterministic_agent, Adversary Strategy: expected_value_adversary
-Average Agent Utility: 4.8, Average Adversary Utility: 3.2
-
 7.
-Scenario: (4, 1, 1, [4, 5, 7, 8]), Agent Strategy: greedy_agent, Adversary Strategy: pick_randomly_adversary
-Average Agent Utility: 5.93, Average Adversary Utility: 1.56
+Scenario: (4, 1, 1, [4, 5, 7, 8]), Agent Strategy: deterministic_agent, Adversary Strategy: expected_value_adversary
+Average Agent Utility: 5.28, Average Adversary Utility: 2.72
 
 8.
-Scenario: (4, 1, 1, [4, 5, 7, 8]), Agent Strategy: greedy_agent, Adversary Strategy: deterministic_adversary
-Average Agent Utility: 3.36, Average Adversary Utility: 4.16
+Scenario: (4, 1, 1, [4, 5, 7, 8]), Agent Strategy: deterministic_agent, Adversary Strategy: optimal_byzantine_adversary
+Average Agent Utility: 6.48, Average Adversary Utility: 1.52
 
 9.
-Scenario: (4, 1, 1, [4, 5, 7, 8]), Agent Strategy: greedy_agent, Adversary Strategy: expected_value_adversary
-Average Agent Utility: 4.78, Average Adversary Utility: 2.79
+Scenario: (4, 1, 1, [4, 5, 7, 8]), Agent Strategy: greedy_agent, Adversary Strategy: pick_randomly_adversary
+Average Agent Utility: 5.49, Average Adversary Utility: 2.05
 
 10.
+Scenario: (4, 1, 1, [4, 5, 7, 8]), Agent Strategy: greedy_agent, Adversary Strategy: deterministic_adversary
+Average Agent Utility: 3.71, Average Adversary Utility: 3.76
+
+11.
+Scenario: (4, 1, 1, [4, 5, 7, 8]), Agent Strategy: greedy_agent, Adversary Strategy: expected_value_adversary
+Average Agent Utility: 4.41, Average Adversary Utility: 3.12
+
+12.
+Scenario: (4, 1, 1, [4, 5, 7, 8]), Agent Strategy: greedy_agent, Adversary Strategy: optimal_byzantine_adversary
+Average Agent Utility: 6.19, Average Adversary Utility: 1.34
+
+13.
 Scenario: (4, 1, 1, [4, 5, 7, 8]), Agent Strategy: safe_agent, Adversary Strategy: pick_randomly_adversary
 Average Agent Utility: 5.11, Average Adversary Utility: 1.89
 
-11.
+14.
 Scenario: (4, 1, 1, [4, 5, 7, 8]), Agent Strategy: safe_agent, Adversary Strategy: deterministic_adversary
 Average Agent Utility: 7.0, Average Adversary Utility: 0.0
 
-12.
-Scenario: (4, 1, 1, [4, 5, 7, 8]), Agent Strategy: safe_agent, Adversary Strategy: expected_value_adversary
-Average Agent Utility: 5.74, Average Adversary Utility: 1.26
-
-13.
-Scenario: (10, 3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: pick_randomly_agent, Adversary Strategy: pick_randomly_adversary
-Average Agent Utility: 11.15, Average Adversary Utility: 5.11
-
-14.
-Scenario: (10, 3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: pick_randomly_agent, Adversary Strategy: deterministic_adversary
-Average Agent Utility: 7.62, Average Adversary Utility: 10.31
-
 15.
-Scenario: (10, 3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: pick_randomly_agent, Adversary Strategy: expected_value_adversary
-Average Agent Utility: 10.13, Average Adversary Utility: 6.0
+Scenario: (4, 1, 1, [4, 5, 7, 8]), Agent Strategy: safe_agent, Adversary Strategy: expected_value_adversary
+Average Agent Utility: 4.55, Average Adversary Utility: 2.45
 
 16.
-Scenario: (10, 3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: deterministic_agent, Adversary Strategy: pick_randomly_adversary
-Average Agent Utility: 19.59, Average Adversary Utility: 7.41
+Scenario: (4, 1, 1, [4, 5, 7, 8]), Agent Strategy: safe_agent, Adversary Strategy: optimal_byzantine_adversary
+Average Agent Utility: 5.74, Average Adversary Utility: 1.26
 
 17.
+Scenario: (4, 1, 1, [4, 5, 7, 8]), Agent Strategy: water_fill_agent, Adversary Strategy: pick_randomly_adversary
+Average Agent Utility: 4.12, Average Adversary Utility: 1.54
+
+18.
+Scenario: (4, 1, 1, [4, 5, 7, 8]), Agent Strategy: water_fill_agent, Adversary Strategy: deterministic_adversary
+Average Agent Utility: 4.24, Average Adversary Utility: 0.88
+
+19.
+Scenario: (4, 1, 1, [4, 5, 7, 8]), Agent Strategy: water_fill_agent, Adversary Strategy: expected_value_adversary
+Average Agent Utility: 4.33, Average Adversary Utility: 1.42
+
+20.
+Scenario: (4, 1, 1, [4, 5, 7, 8]), Agent Strategy: water_fill_agent, Adversary Strategy: optimal_byzantine_adversary
+Average Agent Utility: 4.57, Average Adversary Utility: 0.97
+
+21.
+Scenario: (10, 3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: pick_randomly_agent, Adversary Strategy: pick_randomly_adversary
+Average Agent Utility: 12.22, Average Adversary Utility: 4.69
+
+22.
+Scenario: (10, 3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: pick_randomly_agent, Adversary Strategy: deterministic_adversary
+Average Agent Utility: 9.1, Average Adversary Utility: 6.91
+
+23.
+Scenario: (10, 3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: pick_randomly_agent, Adversary Strategy: expected_value_adversary
+Average Agent Utility: 9.76, Average Adversary Utility: 6.46
+
+24.
+Scenario: (10, 3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: pick_randomly_agent, Adversary Strategy: optimal_byzantine_adversary
+Average Agent Utility: 14.54, Average Adversary Utility: 2.38
+
+25.
+Scenario: (10, 3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: deterministic_agent, Adversary Strategy: pick_randomly_adversary
+Average Agent Utility: 18.58, Average Adversary Utility: 8.42
+
+26.
 Scenario: (10, 3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: deterministic_agent, Adversary Strategy: deterministic_adversary
 Average Agent Utility: 0.0, Average Adversary Utility: 27.0
 
-18.
+27.
 Scenario: (10, 3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: deterministic_agent, Adversary Strategy: expected_value_adversary
-Average Agent Utility: 14.26, Average Adversary Utility: 12.74
+Average Agent Utility: 15.06, Average Adversary Utility: 11.94
 
-19.
+28.
+Scenario: (10, 3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: deterministic_agent, Adversary Strategy: optimal_byzantine_adversary
+Average Agent Utility: 27.0, Average Adversary Utility: 0.0
+
+29.
 Scenario: (10, 3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: greedy_agent, Adversary Strategy: pick_randomly_adversary
-Average Agent Utility: 15.59, Average Adversary Utility: 6.68
+Average Agent Utility: 15.94, Average Adversary Utility: 6.37
 
-20.
+30.
 Scenario: (10, 3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: greedy_agent, Adversary Strategy: deterministic_adversary
-Average Agent Utility: 8.59, Average Adversary Utility: 13.89
+Average Agent Utility: 9.73, Average Adversary Utility: 12.39
 
-21.
+31.
 Scenario: (10, 3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: greedy_agent, Adversary Strategy: expected_value_adversary
-Average Agent Utility: 12.64, Average Adversary Utility: 9.63
+Average Agent Utility: 13.0, Average Adversary Utility: 9.37
 
-22.
+32.
+Scenario: (10, 3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: greedy_agent, Adversary Strategy: optimal_byzantine_adversary
+Average Agent Utility: 21.36, Average Adversary Utility: 1.21
+
+33.
 Scenario: (10, 3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: safe_agent, Adversary Strategy: pick_randomly_adversary
-Average Agent Utility: 12.72, Average Adversary Utility: 5.28
+Average Agent Utility: 12.61, Average Adversary Utility: 5.39
 
-23.
+34.
 Scenario: (10, 3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: safe_agent, Adversary Strategy: deterministic_adversary
 Average Agent Utility: 18.0, Average Adversary Utility: 0.0
 
-24.
+35.
 Scenario: (10, 3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: safe_agent, Adversary Strategy: expected_value_adversary
-Average Agent Utility: 11.34, Average Adversary Utility: 6.66
+Average Agent Utility: 12.21, Average Adversary Utility: 5.79
 
-25.
+36.
+Scenario: (10, 3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: safe_agent, Adversary Strategy: optimal_byzantine_adversary
+Average Agent Utility: 15.67, Average Adversary Utility: 2.33
+
+37.
+Scenario: (10, 3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: water_fill_agent, Adversary Strategy: pick_randomly_adversary
+Average Agent Utility: 5.3, Average Adversary Utility: 2.13
+
+38.
+Scenario: (10, 3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: water_fill_agent, Adversary Strategy: deterministic_adversary
+Average Agent Utility: 7.72, Average Adversary Utility: 0.0
+
+39.
+Scenario: (10, 3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: water_fill_agent, Adversary Strategy: expected_value_adversary
+Average Agent Utility: 6.13, Average Adversary Utility: 1.59
+
+40.
+Scenario: (10, 3, 3, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: water_fill_agent, Adversary Strategy: optimal_byzantine_adversary
+Average Agent Utility: 4.14, Average Adversary Utility: 3.58
+
+41.
 Scenario: (10, 5, 2, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: pick_randomly_agent, Adversary Strategy: pick_randomly_adversary
-Average Agent Utility: 21.62, Average Adversary Utility: 5.69
+Average Agent Utility: 22.86, Average Adversary Utility: 5.91
 
-26.
+42.
 Scenario: (10, 5, 2, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: pick_randomly_agent, Adversary Strategy: deterministic_adversary
-Average Agent Utility: 17.82, Average Adversary Utility: 9.09
+Average Agent Utility: 18.37, Average Adversary Utility: 8.54
 
-27.
+43.
 Scenario: (10, 5, 2, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: pick_randomly_agent, Adversary Strategy: expected_value_adversary
-Average Agent Utility: 20.84, Average Adversary Utility: 7.04
+Average Agent Utility: 20.98, Average Adversary Utility: 6.92
 
-28.
+44.
+Scenario: (10, 5, 2, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: pick_randomly_agent, Adversary Strategy: optimal_byzantine_adversary
+Average Agent Utility: 20.09, Average Adversary Utility: 8.09
+
+45.
 Scenario: (10, 5, 2, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: deterministic_agent, Adversary Strategy: pick_randomly_adversary
-Average Agent Utility: 32.28, Average Adversary Utility: 7.72
+Average Agent Utility: 32.51, Average Adversary Utility: 7.49
 
-29.
+46.
 Scenario: (10, 5, 2, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: deterministic_agent, Adversary Strategy: deterministic_adversary
 Average Agent Utility: 21.0, Average Adversary Utility: 19.0
 
-30.
+47.
 Scenario: (10, 5, 2, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: deterministic_agent, Adversary Strategy: expected_value_adversary
-Average Agent Utility: 28.67, Average Adversary Utility: 11.33
+Average Agent Utility: 27.98, Average Adversary Utility: 12.02
 
-31.
+48.
+Scenario: (10, 5, 2, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: deterministic_agent, Adversary Strategy: optimal_byzantine_adversary
+Average Agent Utility: 34.68, Average Adversary Utility: 5.32
+
+49.
 Scenario: (10, 5, 2, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: greedy_agent, Adversary Strategy: pick_randomly_adversary
-Average Agent Utility: 28.91, Average Adversary Utility: 6.07
+Average Agent Utility: 27.42, Average Adversary Utility: 7.03
 
-32.
+50.
 Scenario: (10, 5, 2, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: greedy_agent, Adversary Strategy: deterministic_adversary
-Average Agent Utility: 21.98, Average Adversary Utility: 12.75
+Average Agent Utility: 21.59, Average Adversary Utility: 13.35
 
-33.
+51.
 Scenario: (10, 5, 2, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: greedy_agent, Adversary Strategy: expected_value_adversary
-Average Agent Utility: 24.63, Average Adversary Utility: 10.66
+Average Agent Utility: 26.16, Average Adversary Utility: 8.9
 
-34.
+52.
+Scenario: (10, 5, 2, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: greedy_agent, Adversary Strategy: optimal_byzantine_adversary
+Average Agent Utility: 27.02, Average Adversary Utility: 7.94
+
+53.
 Scenario: (10, 5, 2, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: safe_agent, Adversary Strategy: pick_randomly_adversary
-Average Agent Utility: 23.99, Average Adversary Utility: 6.01
+Average Agent Utility: 23.88, Average Adversary Utility: 6.12
 
-35.
+54.
 Scenario: (10, 5, 2, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: safe_agent, Adversary Strategy: deterministic_adversary
 Average Agent Utility: 30.0, Average Adversary Utility: 0.0
 
-36.
+55.
 Scenario: (10, 5, 2, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: safe_agent, Adversary Strategy: expected_value_adversary
-Average Agent Utility: 22.85, Average Adversary Utility: 7.15
+Average Agent Utility: 22.98, Average Adversary Utility: 7.02
+
+56.
+Scenario: (10, 5, 2, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: safe_agent, Adversary Strategy: optimal_byzantine_adversary
+Average Agent Utility: 18.86, Average Adversary Utility: 11.14
+
+57.
+Scenario: (10, 5, 2, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: water_fill_agent, Adversary Strategy: pick_randomly_adversary
+Average Agent Utility: 13.59, Average Adversary Utility: 3.36
+
+58.
+Scenario: (10, 5, 2, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: water_fill_agent, Adversary Strategy: deterministic_adversary
+Average Agent Utility: 16.58, Average Adversary Utility: 0.0
+
+59.
+Scenario: (10, 5, 2, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: water_fill_agent, Adversary Strategy: expected_value_adversary
+Average Agent Utility: 13.67, Average Adversary Utility: 3.08
+
+60.
+Scenario: (10, 5, 2, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]), Agent Strategy: water_fill_agent, Adversary Strategy: optimal_byzantine_adversary
+Average Agent Utility: 5.5, Average Adversary Utility: 11.19
