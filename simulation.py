@@ -211,6 +211,10 @@ def expected_value_adversary(n, l, t, boxes):
     # Return the boxes with a flag (0 for no, 1 for yes) indicating if they were chosen
     return [(boxes[i], 1 if i in chosen_boxes else 0) for i in range(n)]
 
+def optimal_byzantine_adversary(n, l, t, boxes):
+    max_val, optimal_p_prime = water_fill(boxes, t, l)
+    return optimal_randomized_agent(n, l, t, boxes, optimal_p_prime)
+
 
 if __name__ == "__main__":
 
@@ -230,7 +234,7 @@ if __name__ == "__main__":
     agent_strategies = [pick_randomly_agent, deterministic_agent, greedy_agent, safe_agent, water_fill_agent]  # TODO: Add more agent strategies here
 
     # Stores all adversary strategies
-    adversary_strategies = [pick_randomly_adversary, deterministic_adversary, expected_value_adversary]  # TODO: Add more adversary strategies here
+    adversary_strategies = [pick_randomly_adversary, deterministic_adversary, expected_value_adversary, optimal_byzantine_adversary]  # TODO: Add more adversary strategies here
 
     num = 0 # for temporary counting of simulations
 
