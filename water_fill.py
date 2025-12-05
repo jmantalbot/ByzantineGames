@@ -26,7 +26,7 @@ def water_fill(values, t, l):
 
 
 '''
-1. The case where $\ell = 1$
+1. The case where $ell = 1$
 Finds the optimal value using the solution for l=1
 
 Arguments:
@@ -64,7 +64,7 @@ def solve_l1(v, t, n):
 
 
 '''
-The case where $\ell > 1$
+The case where $ell > 1$
 Constructs the maximal E-nice pseudo-distribution and calculates its water usage
 
 Arguments:
@@ -85,7 +85,7 @@ def get_p_prime_for_E(v, n, E, l):
   for k in range(n):
     v_k = v[k]
     # desired prob to reach level E
-    despired_p_k = E / v_k
+    desired_p_k = E / v_k
     # max prob is 1
     p_k = min(1.0, desired_p_k)
     
@@ -103,7 +103,7 @@ def get_p_prime_for_E(v, n, E, l):
 
 
 '''
-The Case where $\ell > 1$
+The Case where $ell > 1$
 Finds the optimal value by simulating the continuous decreease of E and finding breakpoints
 
 Arguments:
