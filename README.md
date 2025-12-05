@@ -23,7 +23,7 @@ Values for boxes have been established for Scenario 1. Start there and then see 
 
 Nathan can get a framework up by tonight for everyone to look at.
 
-# Meeting 2
+# Meeting 2 11/21
 
 Simulation function\
 tuple for different scenarios (n, t, l)\
