@@ -1,5 +1,5 @@
 def optimal_randomized_agent(n, l, t, boxes, optimal_p_prime):
-  p_prime_array = np.arrray(optimal_p_prime)
+  p_prime_array = np.array(optimal_p_prime)
   chosen_boxes_indices = []
   # Remaining selections
   R_rem = l
