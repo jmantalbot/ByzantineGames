@@ -139,6 +139,11 @@ def safe_agent(n, l, t, boxes):
     return [(boxes[i], 1 if i in chosen_boxes else 0) for i in range(n)]
 
 
+# Defines the water fill agent strategy (should be the best performing, lowest loss)
+def water_fill_agent(n, l, t, boxes):
+    max_val, optimal_p_prime = water_fill(boxes, t, l)
+    return optimal_randomized_agent(n,l,t, boxes, optimal_p_prime)
+
 # =================== Adversary Strategies ===================
 def pick_randomly_adversary(n, l, t, boxes):
     """
@@ -222,7 +227,7 @@ if __name__ == "__main__":
     scenarios = [scenario1, scenario2, scenario3]
 
     # Stores all agent strategies
-    agent_strategies = [pick_randomly_agent, deterministic_agent, greedy_agent, safe_agent]  # TODO: Add more agent strategies here
+    agent_strategies = [pick_randomly_agent, deterministic_agent, greedy_agent, safe_agent, water_fill_agent]  # TODO: Add more agent strategies here
 
     # Stores all adversary strategies
     adversary_strategies = [pick_randomly_adversary, deterministic_adversary, expected_value_adversary]  # TODO: Add more adversary strategies here
