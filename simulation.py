@@ -227,20 +227,45 @@ if __name__ == "__main__":
     # Stores all adversary strategies
     adversary_strategies = [pick_randomly_adversary, deterministic_adversary, expected_value_adversary]  # TODO: Add more adversary strategies here
 
-    num = 0 # for temporary counting of simulations
+    # If true prints information about every single combination
+    verbose = False
+
+    num = 0
 
     for scenario in scenarios:
+        # Stores average utilites for all strategy combinations for the results summary
+        scenario_results = []
+
+
         for agent_strategy in agent_strategies:
             for adversary_strategy in adversary_strategies:
                 agent_utility, adversary_utility = simulate(scenario, agent_strategy, adversary_strategy, simulations=100)
 
-                # temprary counter logic (helps us see how many total combinations have been run)
-                num += 1
-                print(str(num) + ". ")
+                # Store the results for this combination
+                scenario_results.append({
+                    "agent": agent_strategy.__name__,
+                    "adversary": adversary_strategy.__name__,
+                    "agent_utility": agent_utility,
+                    "adversary_utility": adversary_utility
+                })
 
-                print(f"Scenario: {scenario}, Agent Strategy: {agent_strategy.__name__}, Adversary Strategy: {adversary_strategy.__name__}")
-                print(f"Average Agent Utility: {agent_utility}, Average Adversary Utility: {adversary_utility}\n")
-                # TODO: The results should be saved so we can determine the best strategy for each scenario. In our proposal we mentioned using a maximin analyasis.
+                if verbose:
+                    # Counter logic (helps us see how many total combinations have been run)
+                    num += 1
+                    print(str(num) + ". ")
 
-    # TODO: Print the results in a nice table format. (Determine which strategy was the best for each scenario or something)
+                    print(f"Scenario: {scenario}, Agent Strategy: {agent_strategy.__name__}, Adversary Strategy: {adversary_strategy.__name__}")
+                    print(f"Average Agent Utility: {agent_utility}, Average Adversary Utility: {adversary_utility}\n")
+                
+        # Summary of results
+        best_agent = max(scenario_results, key=lambda x: x["agent_utility"])
+        best_adversary = max(scenario_results, key=lambda x: x["adversary_utility"])
+
+        scenario_count = 1
+
+        print(f"--- Scenario {scenario_count}: N = {len(scenario[3])}, T = {scenario[2]} , L = {scenario[1]} ---")
+        scenario_count += 1
+        print(f"Best Agent Strategy: {best_agent['agent']} with Average Utility: {best_agent['agent_utility']} and Total Potential Utility: {sum(scenario[3])}")
+        print(f"Best Adversary Strategy: {best_adversary['adversary']} with Average Utility: {best_adversary['adversary_utility']} and Total Potential Utility: {sum(scenario[3])}\n")
+
 
