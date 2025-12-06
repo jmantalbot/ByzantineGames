@@ -26,7 +26,7 @@ def water_fill(values, t, l):
 
 
 '''
-1. The case where $\ell = 1$
+1. The case where $ell = 1$
 Finds the optimal value using the solution for l=1
 
 Arguments:
@@ -44,11 +44,11 @@ def solve_l1(v, t, n):
     inverse_v_sum += (1.0 / v[i-1]) # v is 0-indexed, i is 1-indexed
   # calculate value for prefix len i -> value(p^i) = (i-t) / (sum_{j=1}^{i} 1/v_j)
   current_val = (i-t) / inverse_v_sum
-  if current_value > max_value:
+  if current_val > max_val:
     max_val = current_val
     optimal_i = i
   # construct optimal pseudo-distribution p'
-  if max_value > 0:
+  if max_val > 0:
     # T* = max_value, p_j = T* / v_j
     p_prime = [0.0] * n
     for j in range(optimal_i):
@@ -64,7 +64,7 @@ def solve_l1(v, t, n):
 
 
 '''
-The case where $\ell > 1$
+The case where $ell > 1$
 Constructs the maximal E-nice pseudo-distribution and calculates its water usage
 
 Arguments:
@@ -85,7 +85,7 @@ def get_p_prime_for_E(v, n, E, l):
   for k in range(n):
     v_k = v[k]
     # desired prob to reach level E
-    despired_p_k = E / v_k
+    desired_p_k = E / v_k
     # max prob is 1
     p_k = min(1.0, desired_p_k)
     
@@ -99,11 +99,11 @@ def get_p_prime_for_E(v, n, E, l):
     p_prime[k] = p_k
     total_water += p_k
     i_saturation = k # container k is now saturated
-return total_water, p_prime, i_saturation
+  return total_water, p_prime, i_saturation
 
 
 '''
-The Case where $\ell > 1$
+The Case where $ell > 1$
 Finds the optimal value by simulating the continuous decreease of E and finding breakpoints
 
 Arguments:
@@ -137,21 +137,21 @@ def solve_l(v,t,l,n):
       breakpoints.add(v[k])
   sorted_breakpoints = sorted(list(breakpoints), reverse=True)
 # Check each breakpoint
-for E in sorted_breakpoints:
+  for E in sorted_breakpoints:
   # calculate maximal E-nice pseudo-distribution p'
-  total_water, p_prime, i_saturation = get_p_prime_for_E(v,n,E,l)
+    total_water, p_prime, i_saturation = get_p_prime_for_E(v,n,E,l)
   # the EV is the water level E times the number of surviving boxes (i_saturation - t + 1) plus the value of the partially ffilled box (i_saturation + 1) if it exists
   # Value(p') = min_{B in [n]^{t}} sum_{j=1}^{n} v_j * p'_j
   # THE ADVERSARY CHOOSES B TO NULLIFY THE T BOXES WITH THE LARGEST EV
   # Since p' is E-nice, E is the largest EV for j <= t + 1
   # THE ADVERSARY WILL NULLIFY THE T BOXES WITH EXPECTED VALUE E
-  current_value = 0.0
-  value_if_t_highest_killed = sum(v[j] * p_prime[j] for j in range(t,n))
+    current_value = 0.0
+    value_if_t_highest_killed = sum(v[j] * p_prime[j] for j in range(t,n))
   # We need to find the worst-case B. The worse case B nullifies the t boxes with the largest EV.
   # the value is determined by the boxes not killed by the adversary.
-  current_value = sum(v[j] * p_prime[j] for j in range(t,n))
-  if current_value > max_value:
-    max_value = current_value
-    optimal_p_prime = p_prime
-return max_value, optimal_p_prime
+    current_value = sum(v[j] * p_prime[j] for j in range(t,n))
+    if current_value > max_value:
+      max_value = current_value
+      optimal_p_prime = p_prime
+  return max_value, optimal_p_prime
 

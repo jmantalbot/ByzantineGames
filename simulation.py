@@ -1,6 +1,7 @@
 import random
-
 import numpy as np
+from water_fill import water_fill
+from middle import optimal_randomized_agent
 
 def setup_scenario(box_values, l, t):
     """
@@ -139,6 +140,12 @@ def safe_agent(n, l, t, boxes):
     return [(boxes[i], 1 if i in chosen_boxes else 0) for i in range(n)]
 
 
+# Defines the water fill agent strategy (should be the best performing, lowest loss)
+def water_fill_agent(n, l, t, boxes):
+    max_val, optimal_p_prime = water_fill(boxes, t, l)
+    print(max_val, optimal_p_prime)
+    return optimal_randomized_agent(n,l,t, boxes, optimal_p_prime)
+
 # =================== Adversary Strategies ===================
 def pick_randomly_adversary(n, l, t, boxes):
     """
@@ -206,6 +213,11 @@ def expected_value_adversary(n, l, t, boxes):
     # Return the boxes with a flag (0 for no, 1 for yes) indicating if they were chosen
     return [(boxes[i], 1 if i in chosen_boxes else 0) for i in range(n)]
 
+def optimal_byzantine_adversary(n, l, t, boxes):
+    max_val, optimal_p_prime = water_fill(boxes, t, l)
+    print(max_val, optimal_p_prime)
+    return optimal_randomized_agent(n, l, t, boxes, optimal_p_prime)
+
 
 if __name__ == "__main__":
 
@@ -222,10 +234,10 @@ if __name__ == "__main__":
     scenarios = [scenario1, scenario2, scenario3]
 
     # Stores all agent strategies
-    agent_strategies = [pick_randomly_agent, deterministic_agent, greedy_agent, safe_agent]  # TODO: Add more agent strategies here
+    agent_strategies = [pick_randomly_agent, deterministic_agent, greedy_agent, safe_agent, water_fill_agent]  # TODO: Add more agent strategies here
 
     # Stores all adversary strategies
-    adversary_strategies = [pick_randomly_adversary, deterministic_adversary, expected_value_adversary]  # TODO: Add more adversary strategies here
+    adversary_strategies = [pick_randomly_adversary, deterministic_adversary, expected_value_adversary, optimal_byzantine_adversary]  # TODO: Add more adversary strategies here
 
     # If true prints information about every single combination
     verbose = False
