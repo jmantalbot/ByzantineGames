@@ -231,6 +231,7 @@ if __name__ == "__main__":
     verbose = False
 
     num = 0
+    scenario_count = 1
 
     for scenario in scenarios:
         # Stores average utilites for all strategy combinations for the results summary
@@ -260,8 +261,6 @@ if __name__ == "__main__":
         # Summary of results
         best_agent = max(scenario_results, key=lambda x: x["agent_utility"])
         best_adversary = max(scenario_results, key=lambda x: x["adversary_utility"])
-
-        scenario_count = 1
 
         print(f"--- Scenario {scenario_count}: N = {len(scenario[3])}, T = {scenario[2]} , L = {scenario[1]} ---")
         scenario_count += 1
