@@ -57,12 +57,12 @@ def simulate(scenario, agent_strategy, adversary_strategy, simulations, history_
         prev_agent_utility = history[-1][0]
         history.append((current_agent_utility, current_adversary_utility))
 
-        if is_learning_agent and i < 10:
+        if is_learning_agent and i < 50:
             print(
                 f"{i + 1:<5} | {prev_agent_utility:<9.2f} | {chosen_strategy_name:<20} | {current_agent_utility:<15.2f}"
             )
-        elif is_learning_agent and i == 10:
-            print("[... Rounds 11 to 990 skipped for brevity ...]")
+        elif is_learning_agent and i == 50:
+            print("[... Rounds 51 to 990 skipped for brevity ...]")
 
     if is_learning_agent:
         print("-" * 55)
@@ -174,11 +174,11 @@ if __name__ == "__main__":
 
     # Define all strategies the learning agent will cycle through
     LEARNING_AGENT_STRATEGIES = [
+        water_fill_agent,
         deterministic_agent,
         greedy_agent,
         pick_randomly_agent,
-        safe_agent,
-        water_fill_agent
+        safe_agent
     ]
     # Set the list and initial index in the global state
     agent_state['strategy_list'] = LEARNING_AGENT_STRATEGIES
@@ -190,12 +190,12 @@ if __name__ == "__main__":
 
     # Stores all agent strategies for the test suite.
     agent_strategies_to_test = [
+        water_fill_agent,
         pick_randomly_agent,
         deterministic_agent,
         greedy_agent,
         safe_agent,
-        universal_learning_agent,
-        water_fill_agent
+        universal_learning_agent
     ]
 
     # Stores all adversary strategies
@@ -242,7 +242,7 @@ if __name__ == "__main__":
                     "adversary_utility": adversary_utility
                 })
 
-                if verbose or agent_strategy == universal_learning_agent:
+                if verbose:
                     num += 1
                     print(
                         f"{num:02}. Agent: {agent_strategy.__name__:<25} vs. Adversary: {adversary_strategy.__name__:<25} | Agent Avg Util: {agent_utility:.2f} | Adv Avg Util: {adversary_utility:.2f}")
