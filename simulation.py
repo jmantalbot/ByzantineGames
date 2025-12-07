@@ -2,6 +2,7 @@ import random
 import numpy as np
 from water_fill import water_fill
 from middle import optimal_randomized_agent
+from collections import deque
 
 def setup_scenario(box_values, l, t):
     """
@@ -19,7 +20,7 @@ def setup_scenario(box_values, l, t):
     return (n, l, t, box_values)
 
 
-def simulate(scenario, agent_strategy, adversary_strategy, simulations):
+def simulate(scenario, agent_strategy, adversary_strategy, simulations, learning = False, history_size=5):
     """
     Simulates the agent and adversary picking boxes from the given scenario.
     Parameters:
@@ -40,12 +41,21 @@ def simulate(scenario, agent_strategy, adversary_strategy, simulations):
     # Unpack the scenario
     n, l, t, boxes = scenario
 
+    # Store a history for the learning agent
+    history = deque([(0, 0)] * history_size, maxlen=history_size)
+
     # Run each simulation
     for i in range(simulations):
         # Agent picks boxes based on its strategy
-        agent_chosen = agent_strategy(n, l, t, boxes)
+        if learning:
+            agent_chosen = agent_strategy(n, l, t, boxes, history)
+        else:
+            agent_chosen = adversary_strategy(n, l, t, boxes)
         # Adversary picks boxes based on its strategy
         adversary_chosen = adversary_strategy(n, l, t, boxes)
+
+        current_agent_utility = 0
+        current_adversary_utility = 0
 
         # Calculate utilities for every box
         for j in range(len(agent_chosen)):
@@ -54,10 +64,15 @@ def simulate(scenario, agent_strategy, adversary_strategy, simulations):
                 # check if the adversary also chose that box
                 if adversary_chosen[j][1] == 1:
                     # adversary foiled the agent
-                    total_adversary_utility += agent_chosen[j][0]
+                    current_adversary_utility += agent_chosen[j][0]
                 else:
                     # agent gets the box value as utility because he was not foiled
-                    total_agent_utility += agent_chosen[j][0]
+                    current_agent_utility += agent_chosen[j][0]
+
+        #Update total utility per round, and use this in our history
+        total_agent_utility += current_agent_utility
+        total_adversary_utility += current_adversary_utility
+        history.append((current_agent_utility, current_adversary_utility))
 
     # Compute average utilities
     total_agent_utility /= simulations
@@ -145,6 +160,8 @@ def water_fill_agent(n, l, t, boxes):
     max_val, optimal_p_prime = water_fill(boxes, t, l)
     print(max_val, optimal_p_prime)
     return optimal_randomized_agent(n,l,t, boxes, optimal_p_prime)
+
+# 
 
 # =================== Adversary Strategies ===================
 def pick_randomly_adversary(n, l, t, boxes):
