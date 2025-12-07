@@ -99,8 +99,27 @@ def safe_agent(n, l, t, boxes, history=None):
     return [(boxes[i], 1 if i in chosen_boxes else 0) for i in range(n)]
 
 def water_fill_agent(n, l, t, boxes, history=None):
-    max_val, optimal_p_prime = water_fill(boxes, t, l)
-    return optimal_randomized_agent(n,l,t, boxes, optimal_p_prime)
+    # CRITICAL: Water fill algorithm requires boxes sorted in descending order (v₁ ≥ v₂ ≥ ... ≥ vₙ)
+    # Create list of (original_index, value) pairs and sort by value descending
+    indexed_boxes = list(enumerate(boxes))
+    indexed_boxes.sort(key=lambda x: x[1], reverse=True)
+    
+    # Extract sorted values and create mapping from sorted index to original index
+    sorted_boxes = [val for _, val in indexed_boxes]
+    index_map = [orig_idx for orig_idx, _ in indexed_boxes]  # sorted_idx -> orig_idx
+    
+    # Call water_fill with sorted boxes
+    max_val, optimal_p_prime = water_fill(sorted_boxes, t, l)
+    
+    # Map probabilities back to original indices
+    # optimal_p_prime[i] is the probability for sorted box i, we need it for original box index_map[i]
+    original_p_prime = [0.0] * n
+    for sorted_idx in range(n):
+        orig_idx = index_map[sorted_idx]
+        original_p_prime[orig_idx] = optimal_p_prime[sorted_idx]
+    
+    # Use optimal_randomized_agent with original boxes and remapped probabilities
+    return optimal_randomized_agent(n, l, t, boxes, original_p_prime)
 
 
 # Adversary strategies (simplified/placeholder definitions)
