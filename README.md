@@ -52,3 +52,6 @@ Check in to rediscuss dates for completion and plans to finish by the weekend.
 
 # Discord Checkpoint 4 12/4
 Plans made to finish by Sunday. Josh is done with the water fill, just putting it in the code. Nathan plans to complete the learning logic over the next few days, and reports can be written.
+
+# Discord Checkpoint 5 12/7
+Nathan worked on completing the basic code for the learning function. Josh added helper functions to simulation.py to connect his water fill and optimal adversary strategies to the main loop. Natalia completed the project writeup, debugged the water fill and optimal adversary strategies to fit the paper better and return the correct results. Team gathered to record the project video and clean up the the repository before submitting. 
