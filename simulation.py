@@ -65,9 +65,11 @@ def simulate(scenario, agent_strategy, adversary_strategy, simulations, learning
                 if adversary_chosen[j][1] == 1:
                     # adversary foiled the agent
                     current_adversary_utility += agent_chosen[j][0]
+                    total_adversary_utility += agent_chosen[j][0]
                 else:
                     # agent gets the box value as utility because he was not foiled
                     current_agent_utility += agent_chosen[j][0]
+                    total_agent_utility += agent_chosen[j][0]
 
         #Update total utility per round, and use this in our history
         total_agent_utility += current_agent_utility
@@ -232,7 +234,7 @@ def expected_value_adversary(n, l, t, boxes):
 
 def optimal_byzantine_adversary(n, l, t, boxes):
     max_val, optimal_p_prime = water_fill(boxes, t, l)
-    print(max_val, optimal_p_prime)
+    # print(max_val, optimal_p_prime)
     return optimal_randomized_agent(n, l, t, boxes, optimal_p_prime)
 
 
@@ -251,10 +253,10 @@ if __name__ == "__main__":
     scenarios = [scenario1, scenario2, scenario3]
 
     # Stores all agent strategies
-    agent_strategies = [pick_randomly_agent, deterministic_agent, greedy_agent, safe_agent, water_fill_agent]  # TODO: Add more agent strategies here
+    agent_strategies = [pick_randomly_agent, deterministic_agent, greedy_agent, safe_agent]
 
     # Stores all adversary strategies
-    adversary_strategies = [pick_randomly_adversary, deterministic_adversary, expected_value_adversary, optimal_byzantine_adversary]  # TODO: Add more adversary strategies here
+    adversary_strategies = [pick_randomly_adversary, deterministic_adversary, expected_value_adversary]
 
     # If true prints information about every single combination
     verbose = False
