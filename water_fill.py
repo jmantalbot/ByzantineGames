@@ -14,7 +14,7 @@ def water_fill(values, t, l):
   n = len(values)
   # This is an edge case. Basically the EV is trivially 0
   if t >= l and l == n:
-    return values[:l]
+    return 0.0, [0.0] * n
   # Case 1: if selecting 1 agent
   if l == 1:
     max_val, optimal_p_prime = solve_l1(values, t, n)
@@ -37,16 +37,16 @@ Arguments:
 def solve_l1(v, t, n):
   max_val = 0.0
   optimal_i = t
-  inverse_v_sum = 0.0
   # Selecting a prefix of len i >= t + 1
+  # For each prefix length i, calculate sum_{j=0}^{i-1} 1/v_j (0-indexed)
   for i in range(t + 1, n + 1):
-    # update sum for current prefix len i
-    inverse_v_sum += (1.0 / v[i-1]) # v is 0-indexed, i is 1-indexed
-  # calculate value for prefix len i -> value(p^i) = (i-t) / (sum_{j=1}^{i} 1/v_j)
-  current_val = (i-t) / inverse_v_sum
-  if current_val > max_val:
-    max_val = current_val
-    optimal_i = i
+    # Calculate sum for current prefix len i: sum of 1/v_j for j=0 to i-1
+    inverse_v_sum = sum(1.0 / v[j] for j in range(i))
+    # calculate value for prefix len i -> value(p^i) = (i-t) / (sum_{j=0}^{i-1} 1/v_j)
+    current_val = (i - t) / inverse_v_sum if inverse_v_sum > 0 else 0.0
+    if current_val > max_val:
+      max_val = current_val
+      optimal_i = i
   # construct optimal pseudo-distribution p'
   if max_val > 0:
     # T* = max_value, p_j = T* / v_j
