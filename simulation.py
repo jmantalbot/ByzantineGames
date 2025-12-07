@@ -143,7 +143,7 @@ def safe_agent(n, l, t, boxes):
 # Defines the water fill agent strategy (should be the best performing, lowest loss)
 def water_fill_agent(n, l, t, boxes):
     max_val, optimal_p_prime = water_fill(boxes, t, l)
-    print(max_val, optimal_p_prime)
+    # print(max_val, optimal_p_prime)
     return optimal_randomized_agent(n,l,t, boxes, optimal_p_prime)
 
 # =================== Adversary Strategies ===================
@@ -215,7 +215,7 @@ def expected_value_adversary(n, l, t, boxes):
 
 def optimal_byzantine_adversary(n, l, t, boxes):
     max_val, optimal_p_prime = water_fill(boxes, t, l)
-    print(max_val, optimal_p_prime)
+    # print(max_val, optimal_p_prime)
     return optimal_randomized_agent(n, l, t, boxes, optimal_p_prime)
 
 
