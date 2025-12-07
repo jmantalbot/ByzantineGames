@@ -50,7 +50,7 @@ def simulate(scenario, agent_strategy, adversary_strategy, simulations, learning
         if learning:
             agent_chosen = agent_strategy(n, l, t, boxes, history)
         else:
-            agent_chosen = adversary_strategy(n, l, t, boxes)
+            agent_chosen = agent_strategy(n, l, t, boxes)
         # Adversary picks boxes based on its strategy
         adversary_chosen = adversary_strategy(n, l, t, boxes)
 
@@ -72,8 +72,6 @@ def simulate(scenario, agent_strategy, adversary_strategy, simulations, learning
                     total_agent_utility += agent_chosen[j][0]
 
         #Update total utility per round, and use this in our history
-        total_agent_utility += current_agent_utility
-        total_adversary_utility += current_adversary_utility
         history.append((current_agent_utility, current_adversary_utility))
 
     # Compute average utilities
@@ -160,7 +158,7 @@ def safe_agent(n, l, t, boxes):
 # Defines the water fill agent strategy (should be the best performing, lowest loss)
 def water_fill_agent(n, l, t, boxes):
     max_val, optimal_p_prime = water_fill(boxes, t, l)
-    print(max_val, optimal_p_prime)
+    # print(max_val, optimal_p_prime)
     return optimal_randomized_agent(n,l,t, boxes, optimal_p_prime)
 
 # 
@@ -253,10 +251,10 @@ if __name__ == "__main__":
     scenarios = [scenario1, scenario2, scenario3]
 
     # Stores all agent strategies
-    agent_strategies = [pick_randomly_agent, deterministic_agent, greedy_agent, safe_agent]
+    agent_strategies = [pick_randomly_agent, deterministic_agent, greedy_agent, safe_agent, water_fill_agent]
 
     # Stores all adversary strategies
-    adversary_strategies = [pick_randomly_adversary, deterministic_adversary, expected_value_adversary]
+    adversary_strategies = [pick_randomly_adversary, deterministic_adversary, expected_value_adversary, optimal_byzantine_adversary]
 
     # If true prints information about every single combination
     verbose = False
@@ -297,5 +295,3 @@ if __name__ == "__main__":
         scenario_count += 1
         print(f"Best Agent Strategy: {best_agent['agent']} with Average Utility: {best_agent['agent_utility']} and Total Potential Utility: {sum(scenario[3])}")
         print(f"Best Adversary Strategy: {best_adversary['adversary']} with Average Utility: {best_adversary['adversary_utility']} and Total Potential Utility: {sum(scenario[3])}\n")
-
-
